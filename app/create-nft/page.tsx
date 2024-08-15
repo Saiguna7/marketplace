@@ -4,10 +4,17 @@ import { useState, useMemo, useCallback, useContext } from "react";
 import Image from "next/image";
 import { useDropzone } from "react-dropzone";
 import { useTheme } from "next-themes";
-import { Button } from "@/components";
+import Button from "@/components/Button";
 import images from "@/public/assets";
+import Input from "@/components/Input";
 const Page = () => {
   const [filUrl, setFileUrl] = useState(null);
+  const [formInput, setformInput] = useState({
+    price: "",
+    name: "",
+    description: "",
+  });
+  console.log(formInput);
   const { theme } = useTheme();
   const onDrop = useCallback(() => {}, []);
   const {
@@ -74,6 +81,46 @@ const Page = () => {
               </aside>
             )}
           </div>
+        </div>
+        <Input
+          inputType="input"
+          title="Name"
+          placeholder="NET Name"
+          handleClick={(e: any) =>
+            setformInput({
+              ...formInput,
+              name: e.target.value,
+            })
+          }
+        />
+        <Input
+          inputType="textarea"
+          title="Description"
+          placeholder="NET Description"
+          handleClick={(e: any) =>
+            setformInput({
+              ...formInput,
+              description: e.target.value,
+            })
+          }
+        />
+        <Input
+          inputType="number"
+          title="Price"
+          placeholder="NET Price"
+          handleClick={(e: any) =>
+            setformInput({
+              ...formInput,
+              price: e.target.value,
+            })
+          }
+        />
+        <div className="mt-7 w-full flex justify-end">
+          <Button
+            btnName="Create NFT"
+            classStyles="rounded-xl"
+            handleClick={() => {}}
+          />
         </div>
       </div>
     </div>
